@@ -112,3 +112,42 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+function createNewsfeed (title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const header2 = document.createElement('h2');
+  const doa = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+
+  article.append(header2);
+  article.append(doa);
+  article.append(p1);
+  article.append(p2);
+  article.append(p3);
+  article.append(span);
+
+  article.classList.add('article');
+  doa.classList.add('date');
+  span.classList.add('expandButton');
+
+  header2.textContent = title;
+  doa.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  span.textContent = 'Click to Expand';
+
+  span.addEventListener('click', ()=> {
+    article.classList.toggle ('article-open')
+  });
+
+  return article;
+}
+
+
+data.map((article) => {
+  return articles.append(createNewsfeed(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph))
+})
